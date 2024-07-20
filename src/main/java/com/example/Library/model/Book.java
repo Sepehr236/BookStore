@@ -37,6 +37,9 @@ public class Book {
     @ManyToOne
     private Publisher publisher;
 
+    @ManyToOne
+    private Account account;
+
     @Version
     private Long version;
 }

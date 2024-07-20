@@ -3,24 +3,17 @@ package com.example.Library.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.List;
-
-@Table(name = "Users")
 @Getter
 @Setter
-@Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Builder
 @Entity
-
-public class User {
+public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
-    private String gmail;
-    private String phoneNumber;
-    private String password;
+    private Long amount;
 
     @Version
     private Long version;
