@@ -11,7 +11,7 @@ public class BookRequest {
     private String name;
     private String about;
     private String language;
-    private String price;
+    private Long price;
     private Long numberOfPages;
     private String publishDate;
     private Long publisherId;

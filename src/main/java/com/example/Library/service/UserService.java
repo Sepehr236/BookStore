@@ -34,7 +34,6 @@ public class UserService {
         user.setGmail(updatedUser.getGmail());
         user.setPhoneNumber(updatedUser.getPhoneNumber());
         user.setPassword(updatedUser.getPassword());
-        user.setWalletAmount(updatedUser.getWalletAmount());
 
         return userRepository.save(user);
     }
