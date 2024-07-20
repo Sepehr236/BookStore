@@ -79,6 +79,8 @@ public class RateService {
 
         Rate finalrate =rateRepository.save(Rate.builder()
                         .rate(rateRequest.getRate())
+                        .user(user)
+                        .book(book)
                 .build());
 
         user.getRates().add(finalrate);

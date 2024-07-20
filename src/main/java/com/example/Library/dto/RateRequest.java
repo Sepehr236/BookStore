@@ -9,6 +9,6 @@ import lombok.*;
 @Builder
 public class RateRequest {
     private Integer rate;
-    private Long UserId;
+    private Long userId;
     private Long bookId;
 }
