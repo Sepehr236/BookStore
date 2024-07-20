@@ -1,6 +1,8 @@
 package com.example.Library.api;
 
+import com.example.Library.model.Account;
 import com.example.Library.model.User;
+import com.example.Library.service.AccountService;
 import com.example.Library.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -13,10 +15,17 @@ import java.util.List;
 @RequiredArgsConstructor
 public class UserController {
     private final UserService userService;
+    private final AccountService accountService;
 
     @PostMapping
-    public ResponseEntity<User> addUser(@RequestBody User user){
+    public ResponseEntity<User> addUser(@RequestBody User user, Account account){
+        accountService.addAccount(account);
         return ResponseEntity.ok(userService.addUser(user));
+    }
+
+    @PostMapping("buyBook/{id}")
+    public void buyBook(@PathVariable("id") Long accountId, @RequestBody Long bookId){
+        accountService.buyBook(accountId, bookId);
     }
 
     @GetMapping
