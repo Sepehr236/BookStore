@@ -14,10 +14,7 @@ public class BookRequest {
     private String price;
     private Long numberOfPages;
     private String publishDate;
-    private String publisherName;
     private Long publisherId;
-    private String authorName;
     private Long authorId;
-    private String translatorName;
     private Long translatorId;
 }
