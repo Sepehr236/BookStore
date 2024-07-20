@@ -28,25 +28,14 @@ public class Book {
     private Double overAllRate;
     private String publishDate;
 
-    @OneToOne
-    @JoinColumn
+    @ManyToOne
     private Author author;
 
-    @OneToOne
-    @JoinColumn
+    @ManyToOne
     private Translator translator;
 
-    @OneToOne
-    @JoinColumn
+    @ManyToOne
     private Publisher publisher;
-
-    @OneToMany
-    @JoinColumn
-    private List<Comment> comments;
-
-    @OneToMany
-    @JoinColumn
-    private List<Rate> rates;
 
     @Version
     private Long version;

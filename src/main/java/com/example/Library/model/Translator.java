@@ -18,10 +18,6 @@ public class Translator {
     private String name;
     private String about;
 
-    @OneToMany
-    @JoinColumn
-    private List<Book> books;
-
     @Version
     private Long version;
 }

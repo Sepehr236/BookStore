@@ -23,14 +23,6 @@ public class User {
     private String password;
     private Long walletAmount;
 
-    @OneToMany
-    @JoinColumn
-    private List<Book> books;
-
-    @OneToMany
-    @JoinColumn
-    private List<Rate> rates;
-
     @Version
     private Long version;
 }

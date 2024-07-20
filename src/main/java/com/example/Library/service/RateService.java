@@ -77,15 +77,10 @@ public class RateService {
 
         book.setOverAllRate(overAllRate());
 
-        Rate finalrate =rateRepository.save(Rate.builder()
+        return rateRepository.save(Rate.builder()
                         .rate(rateRequest.getRate())
                         .user(user)
                         .book(book)
                 .build());
-
-        user.getRates().add(finalrate);
-        book.getRates().add(finalrate);
-
-        return finalrate;
     }
 }

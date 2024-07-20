@@ -35,7 +35,7 @@ public class BookService {
 
 
 
-        Book book =  bookRepository.save(Book.builder()
+        return bookRepository.save(Book.builder()
                         .publisher(publisher)
                         .author(author)
                         .translator(translator)
@@ -53,12 +53,6 @@ public class BookService {
                         .overAllRate(0.0)
 
                 .build());
-
-        author.getBooks().add(book);
-        publisher.getBooks().add(book);
-        translator.getBooks().add(book);
-
-        return book;
     }
 
     public List<Book> getAllBooks(){
@@ -71,19 +65,11 @@ public class BookService {
 
     public Book updateBook(Long id, BookRequest bookRequest){
         Book book = getBookById(id);
-        Author author = book.getAuthor();
-        author.getBooks().remove(book);
-        Publisher publisher = book.getPublisher();
-        publisher.getBooks().remove(book);
-        Translator translator = book.getTranslator();
-        translator.getBooks().remove(book);
-
-
-        Author updatedAuthor = authorRepository.findById(bookRequest.getAuthorId())
+        Author author = authorRepository.findById(bookRequest.getAuthorId())
                 .orElseThrow(ResourceNotFound.instance("Author not found!!!"));
-        Publisher updatedPublisher = publisherRepository.findById(bookRequest.getPublisherId())
+        Publisher publisher = publisherRepository.findById(bookRequest.getPublisherId())
                 .orElseThrow(ResourceNotFound.instance("Publisher not found!!!"));
-        Translator updatedTranslator = translatorRepository.findById(bookRequest.getTranslatorId())
+        Translator translator = translatorRepository.findById(bookRequest.getTranslatorId())
                 .orElseThrow(ResourceNotFound.instance("Translator not found!!!"));
 
         book.setName(bookRequest.getName());
@@ -92,9 +78,9 @@ public class BookService {
         book.setPrice(bookRequest.getPrice());
         book.setNumberOfPages(bookRequest.getNumberOfPages());
         book.setPublishDate(bookRequest.getPublishDate());
-        book.setAuthor(updatedAuthor);
-        book.setPublisher(updatedPublisher);
-        book.setTranslator(updatedTranslator);
+        book.setAuthor(author);
+        book.setPublisher(publisher);
+        book.setTranslator(translator);
 
         return bookRepository.save(book);
     }

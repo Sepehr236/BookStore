@@ -17,11 +17,6 @@ public class Author {
     private Long id;
     private String name;
     private String about;
-
-    @OneToMany
-    @JoinColumn
-    private List<Book> books;
-
     @Version
     private Long version;
 }

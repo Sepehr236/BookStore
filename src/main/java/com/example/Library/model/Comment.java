@@ -15,6 +15,12 @@ public class Comment {
     private Long id;
     private String Comment;
 
+    @ManyToOne
+    private User user;
+
+    @ManyToOne
+    private Book book;
+
     @Version
     private Long version;
 }

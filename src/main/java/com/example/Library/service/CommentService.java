@@ -16,11 +16,8 @@ public class CommentService {
     private final CommentRepository commentRepository;
     private final BookRepository bookRepository;
     public Book addComment(Long bookId, Comment comment){
-        Book book =  bookRepository.findById(bookId).orElseThrow(ResourceNotFound.instance("Book not found !!!"));
 
-        book.getComments().add(comment);
-        book.setComments(book.getComments());
 
-        return book;
+        return bookRepository.findById(bookId).orElseThrow(ResourceNotFound.instance("Book not found !!!"));
     }
 }

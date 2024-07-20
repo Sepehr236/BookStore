@@ -15,12 +15,10 @@ public class Rate {
     private Long id;
     private Integer rate;
 
-    @OneToOne
-    @JoinColumn
+    @ManyToOne
     private User user;
 
-    @OneToOne
-    @JoinColumn
+    @ManyToOne
     private Book book;
 
     @Version
