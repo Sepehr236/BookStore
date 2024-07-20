@@ -3,6 +3,8 @@ package com.example.Library.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -14,6 +16,9 @@ public class Account {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private Long amount;
+
+    @OneToMany
+    private List<Book> books;
 
     @Version
     private Long version;

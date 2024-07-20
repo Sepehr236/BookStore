@@ -18,7 +18,7 @@ public class Book {
     private String name;
     private String about;
     private String language;
-    private String price;
+    private Long price;
     private Long numberOfPages;
     private Integer fiveStars;
     private Integer fourStars;
@@ -36,9 +36,6 @@ public class Book {
 
     @ManyToOne
     private Publisher publisher;
-
-    @ManyToOne
-    private Account account;
 
     @Version
     private Long version;
