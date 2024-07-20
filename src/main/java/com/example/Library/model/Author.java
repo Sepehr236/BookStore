@@ -3,6 +3,8 @@ package com.example.Library.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity
 @Builder
 @Getter
@@ -15,6 +17,10 @@ public class Author {
     private Long id;
     private String name;
     private String about;
+
+    @OneToMany
+    @JoinColumn
+    private List<Book> books;
 
     @Version
     private Long version;
