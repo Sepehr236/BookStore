@@ -1,6 +1,8 @@
 package com.example.Library.service;
 
+import com.example.Library.dto.UserRequest;
 import com.example.Library.exeption.ResourceNotFound;
+import com.example.Library.model.Account;
 import com.example.Library.model.User;
 import com.example.Library.repository.UserRepository;
 import jakarta.transaction.Transactional;
@@ -15,8 +17,13 @@ import java.util.List;
 public class UserService {
     private final UserRepository userRepository;
 
-    public User addUser(User user){
-        return userRepository.save(user);
+    public User addUser(UserRequest userRequest){
+        return userRepository.save(User.builder()
+                        .name(userRequest.getName())
+                        .gmail(userRequest.getGmail())
+                        .phoneNumber(userRequest.getPhoneNumber())
+                        .password(userRequest.getPassword())
+                .build());
     }
 
     public User getUserById(Long id){

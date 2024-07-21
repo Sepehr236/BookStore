@@ -1,15 +1,16 @@
 package com.example.Library.dto;
 
-import com.example.Library.model.Account;
-import com.example.Library.model.User;
 import lombok.*;
 
+@Builder
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@AllArgsConstructor
 public class UserRequest {
-    private User user;
-    private Account account;
+    private String name;
+    private String gmail;
+    private String password;
+    private String phoneNumber;
+    private Long amount;
 }

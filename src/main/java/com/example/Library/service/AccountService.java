@@ -17,13 +17,16 @@ import org.springframework.stereotype.Service;
 public class AccountService {
     private final AccountRepository accountRepository;
     private final BookRepository bookRepository;
+    private final UserService userService;
 
-    public Account addAccount(UserRequest userRequest){
-        Account addedAccount =  accountRepository.save(Account.builder()
-                        .amount(userRequest.getAccount().getAmount())
+    public User addAccount(UserRequest userRequest){
+        User user = userService.addUser(userRequest);
+        Account account = accountRepository.save(Account.builder()
+                        .amount(userRequest.getAmount())
                 .build());
-        userRequest.getUser().setAccount(addedAccount);
-        return addedAccount;
+
+        user.setAccount(account);
+        return user;
     }
 
     public Account buyBook(Long accountId, Long bookId){

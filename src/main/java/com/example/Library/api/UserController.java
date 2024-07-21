@@ -20,8 +20,7 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> addUser(@RequestBody UserRequest userRequest){
-        ResponseEntity.ok(accountService.addAccount(userRequest));
-        return ResponseEntity.ok(userService.addUser(userRequest.getUser()));
+        return ResponseEntity.ok(accountService.addAccount(userRequest));
     }
 
     @PostMapping("buyBook/{id}")
