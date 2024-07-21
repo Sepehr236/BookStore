@@ -22,7 +22,7 @@ public class AccountService {
                 .build());
     }
 
-    public void buyBook(Long accountId, Long bookId){
+    public Account buyBook(Long accountId, Long bookId){
         Account account = accountRepository.findById(accountId)
                 .orElseThrow(ResourceNotFound.instance("Account not found !!!"));
         Book book = bookRepository.findById(bookId)
@@ -31,6 +31,7 @@ public class AccountService {
         if(book.getPrice() <= account.getAmount()){
             account.setAmount(account.getAmount() - book.getPrice());
             account.getBooks().add(book);
+            return account;
         }else{
             throw ResourceNotFound.instance("Budget not enough !!!");
         }

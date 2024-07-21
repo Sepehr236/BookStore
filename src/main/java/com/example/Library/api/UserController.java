@@ -19,12 +19,16 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> addUser(@RequestBody User user, Account account){
-        accountService.addAccount(account);
+        addAccount(account);
         return ResponseEntity.ok(userService.addUser(user));
     }
 
+    public void addAccount(@RequestBody Account account){
+        ResponseEntity.ok(accountService.addAccount(account));
+    }
+
     @PostMapping("buyBook/{id}")
-    public void buyBook(@PathVariable("id") Long accountId, @RequestBody Long bookId){
+    public void buyBook(@PathVariable("id") Long accountId,@RequestBody Long bookId){
         accountService.buyBook(accountId, bookId);
     }
 
