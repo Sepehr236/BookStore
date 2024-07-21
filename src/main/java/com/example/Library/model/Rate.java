@@ -16,7 +16,7 @@ public class Rate {
     private Integer rate;
 
     @ManyToOne
-    private User user;
+    private Account account;
 
     @ManyToOne
     private Book book;

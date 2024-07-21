@@ -2,9 +2,11 @@ package com.example.Library.service;
 
 import com.example.Library.dto.RateRequest;
 import com.example.Library.exeption.ResourceNotFound;
+import com.example.Library.model.Account;
 import com.example.Library.model.Book;
 import com.example.Library.model.Rate;
 import com.example.Library.model.User;
+import com.example.Library.repository.AccountRepository;
 import com.example.Library.repository.BookRepository;
 import com.example.Library.repository.RateRepository;
 import com.example.Library.repository.UserRepository;
@@ -18,7 +20,7 @@ import org.springframework.stereotype.Service;
 public class RateService {
     private final RateRepository rateRepository;
     private final BookRepository bookRepository;
-    private final UserRepository userRepository;
+    private final AccountRepository accountRepository;
 
     public Integer numberOfFiveStars(){
         return rateRepository.fiveStars();
@@ -51,7 +53,7 @@ public class RateService {
         Book book = bookRepository.findById(rateRequest.getBookId())
                 .orElseThrow(ResourceNotFound.instance("Book not found !!!"));
 
-        User user = userRepository.findById(rateRequest.getUserId())
+        Account account = accountRepository.findById(rateRequest.getAccountId())
                 .orElseThrow(ResourceNotFound.instance("User not found !!!"));
 
         Integer rate = rateRequest.getRate();
@@ -79,7 +81,7 @@ public class RateService {
 
         return rateRepository.save(Rate.builder()
                         .rate(rateRequest.getRate())
-                        .user(user)
+                        .account(account)
                         .book(book)
                 .build());
     }

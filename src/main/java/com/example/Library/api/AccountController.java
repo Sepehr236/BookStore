@@ -1,5 +1,6 @@
 package com.example.Library.api;
 
+import com.example.Library.dto.BuyRequest;
 import com.example.Library.model.Account;
 import com.example.Library.service.AccountService;
 import jakarta.transaction.Transactional;
@@ -14,7 +15,7 @@ public class AccountController {
     private final AccountService accountService;
 
     @PostMapping("/{id}")
-    public ResponseEntity<Account> buyBook(@PathVariable("id") Long bookId, @RequestBody Long accountId){
-        return ResponseEntity.ok(accountService.buyBook(accountId, bookId));
+    public ResponseEntity<Account> buyBook(@RequestBody BuyRequest buyRequest){
+        return ResponseEntity.ok(accountService.buyBook(buyRequest.getAccountId(), buyRequest.getBookId()));
     }
 }

@@ -7,8 +7,7 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class RateRequest {
-    private Integer rate;
+public class BuyRequest {
     private Long accountId;
     private Long bookId;
 }
