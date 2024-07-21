@@ -8,13 +8,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("BuyBook")
+@RequestMapping("api/BuyBook")
 @RestController
 @RequiredArgsConstructor
 public class AccountController {
     private final AccountService accountService;
 
-    @PostMapping("/{id}")
+    @PostMapping()
     public ResponseEntity<Account> buyBook(@RequestBody BuyRequest buyRequest){
         return ResponseEntity.ok(accountService.buyBook(buyRequest.getAccountId(), buyRequest.getBookId()));
     }
