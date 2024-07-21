@@ -1,5 +1,6 @@
 package com.example.Library.api;
 
+import com.example.Library.dto.UserRequest;
 import com.example.Library.model.Account;
 import com.example.Library.model.User;
 import com.example.Library.service.AccountService;
@@ -18,9 +19,9 @@ public class UserController {
     private final AccountService accountService;
 
     @PostMapping
-    public ResponseEntity<User> addUser(@RequestBody User user, Account account){
-        ResponseEntity.ok(accountService.addAccount(account, user));
-        return ResponseEntity.ok(userService.addUser(user));
+    public ResponseEntity<User> addUser(@RequestBody UserRequest userRequest){
+        ResponseEntity.ok(accountService.addAccount(userRequest));
+        return ResponseEntity.ok(userService.addUser(userRequest.getUser()));
     }
 
     @PostMapping("buyBook/{id}")

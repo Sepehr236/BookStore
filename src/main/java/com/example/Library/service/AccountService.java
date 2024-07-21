@@ -1,5 +1,6 @@
 package com.example.Library.service;
 
+import com.example.Library.dto.UserRequest;
 import com.example.Library.exeption.ResourceNotFound;
 import com.example.Library.model.Account;
 import com.example.Library.model.Book;
@@ -17,12 +18,11 @@ public class AccountService {
     private final AccountRepository accountRepository;
     private final BookRepository bookRepository;
 
-    public Account addAccount(Account account, User user){
+    public Account addAccount(UserRequest userRequest){
         Account addedAccount =  accountRepository.save(Account.builder()
-                        .amount(account.getAmount())
+                        .amount(userRequest.getAccount().getAmount())
                 .build());
-        user.setAccount(addedAccount);
-
+        userRequest.getUser().setAccount(addedAccount);
         return addedAccount;
     }
 
