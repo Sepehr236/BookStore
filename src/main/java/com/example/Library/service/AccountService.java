@@ -3,6 +3,7 @@ package com.example.Library.service;
 import com.example.Library.exeption.ResourceNotFound;
 import com.example.Library.model.Account;
 import com.example.Library.model.Book;
+import com.example.Library.model.User;
 import com.example.Library.repository.AccountRepository;
 import com.example.Library.repository.BookRepository;
 import jakarta.transaction.Transactional;
@@ -16,10 +17,13 @@ public class AccountService {
     private final AccountRepository accountRepository;
     private final BookRepository bookRepository;
 
-    public Account addAccount(Account account){
-        return accountRepository.save(Account.builder()
+    public Account addAccount(Account account, User user){
+        Account addedAccount =  accountRepository.save(Account.builder()
                         .amount(account.getAmount())
                 .build());
+        user.setAccount(addedAccount);
+
+        return addedAccount;
     }
 
     public Account buyBook(Long accountId, Long bookId){
@@ -35,6 +39,5 @@ public class AccountService {
         }else{
             throw ResourceNotFound.instance("Budget not enough !!!");
         }
-
     }
 }

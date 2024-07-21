@@ -22,6 +22,9 @@ public class User {
     private String phoneNumber;
     private String password;
 
+    @OneToOne
+    private Account account;
+
     @Version
     private Long version;
 }

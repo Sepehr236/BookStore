@@ -19,12 +19,8 @@ public class UserController {
 
     @PostMapping
     public ResponseEntity<User> addUser(@RequestBody User user, Account account){
-        addAccount(account);
+        ResponseEntity.ok(accountService.addAccount(account, user));
         return ResponseEntity.ok(userService.addUser(user));
-    }
-
-    public void addAccount(@RequestBody Account account){
-        ResponseEntity.ok(accountService.addAccount(account));
     }
 
     @PostMapping("buyBook/{id}")
