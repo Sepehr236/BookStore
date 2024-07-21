@@ -16,7 +16,7 @@ public class Comment {
     private String Comment;
 
     @ManyToOne
-    private User user;
+    private Account account;
 
     @ManyToOne
     private Book book;

@@ -15,9 +15,12 @@ import org.springframework.stereotype.Service;
 public class CommentService {
     private final CommentRepository commentRepository;
     private final BookRepository bookRepository;
-    public Book addComment(Long bookId, Comment comment){
 
+    public Comment addComment(Long bookId, Comment comment){
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(ResourceNotFound.instance("Book not found !!!"));
 
-        return bookRepository.findById(bookId).orElseThrow(ResourceNotFound.instance("Book not found !!!"));
+        book.getComments().add(comment);
+        return comment;
     }
 }

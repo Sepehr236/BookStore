@@ -37,6 +37,9 @@ public class Book {
     @ManyToOne
     private Publisher publisher;
 
+    @OneToMany
+    private List<Comment> comments;
+
     @Version
     private Long version;
 }
