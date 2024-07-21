@@ -1,6 +1,7 @@
 package com.example.Library.service;
 
 import com.example.Library.dto.CommentRequest;
+import com.example.Library.dto.DeleteCommentRequest;
 import com.example.Library.exeption.ResourceNotFound;
 import com.example.Library.model.Account;
 import com.example.Library.model.Book;
@@ -34,5 +35,14 @@ public class CommentService {
         book.getComments().add(comment);
 
         return comment;
+    }
+
+    public void deleteComment(DeleteCommentRequest deleteCommentRequest){
+        Book book = bookRepository.findById(deleteCommentRequest.getBookId())
+                .orElseThrow(ResourceNotFound.instance("Book not found !!!"));
+        Comment comment = commentRepository.findById(deleteCommentRequest.getCommentId())
+                .orElseThrow(ResourceNotFound.instance("Account not found !!!"));
+
+        book.getComments().remove(comment);
     }
 }
