@@ -1,0 +1,13 @@
+package com.example.Library.dto;
+
+import lombok.*;
+
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+public class BookBasketRequest {
+    private Long userId;
+    private Long bookId;
+}
