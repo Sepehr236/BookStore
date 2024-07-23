@@ -2,6 +2,7 @@ package com.example.Library.api;
 
 import com.example.Library.dto.BookRequest;
 import com.example.Library.model.Book;
+import com.example.Library.model.Category;
 import com.example.Library.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -33,6 +34,11 @@ public class BookController {
     @GetMapping("/Search")
     public ResponseEntity<Book> searchBook(@RequestBody String name){
         return ResponseEntity.ok(bookService.searchBook(name));
+    }
+
+    @GetMapping("/FilterByCategory")
+    public ResponseEntity<List<Book>> findBookByCategory(@RequestBody Category category){
+        return ResponseEntity.ok(bookService.findByCategory(category));
     }
 
     @PutMapping("/{id}")

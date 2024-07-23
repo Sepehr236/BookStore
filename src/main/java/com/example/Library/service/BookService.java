@@ -2,10 +2,7 @@ package com.example.Library.service;
 
 import com.example.Library.dto.BookRequest;
 import com.example.Library.exeption.ResourceNotFound;
-import com.example.Library.model.Author;
-import com.example.Library.model.Book;
-import com.example.Library.model.Publisher;
-import com.example.Library.model.Translator;
+import com.example.Library.model.*;
 import com.example.Library.repository.AuthorRepository;
 import com.example.Library.repository.BookRepository;
 import com.example.Library.repository.PublisherRepository;
@@ -92,5 +89,9 @@ public class BookService {
 
     public Book searchBook(String name){
         return bookRepository.findByName(name);
+    }
+
+    public List<Book> findByCategory(Category category){
+        return bookRepository.findByCategory(category);
     }
 }

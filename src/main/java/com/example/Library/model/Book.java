@@ -40,7 +40,7 @@ public class Book {
     @OneToMany
     private List<Comment> comments;
 
-    @OneToMany
+    @ManyToMany
     private List<Category> categories;
 
     @Version
