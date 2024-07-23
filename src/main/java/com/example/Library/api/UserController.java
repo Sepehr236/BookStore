@@ -1,9 +1,12 @@
 package com.example.Library.api;
 
+import com.example.Library.dto.BookBasketRequest;
 import com.example.Library.dto.UserRequest;
 import com.example.Library.model.Account;
+import com.example.Library.model.BookBasket;
 import com.example.Library.model.User;
 import com.example.Library.service.AccountService;
+import com.example.Library.service.BookBasketService;
 import com.example.Library.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +20,17 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
     private final AccountService accountService;
+    private final BookBasketService bookBasketService;
 
     @PostMapping
     public ResponseEntity<User> addUser(@RequestBody UserRequest userRequest){
+        bookBasketService.addBookBasket();
         return ResponseEntity.ok(accountService.addAccount(userRequest));
+    }
+
+    @PostMapping("addBookToBasket")
+    public ResponseEntity<BookBasket> addBookToBasket(@RequestBody BookBasketRequest bookBasketRequest){
+        return ResponseEntity.ok(bookBasketService.addBookToBasket(bookBasketRequest));
     }
 
     @PostMapping("buyBook/{id}")
@@ -44,8 +54,14 @@ public class UserController {
     }
 
     @DeleteMapping("/{id}")
-
     public void deleteUser(@PathVariable("id") Long id){
         userService.deleteUser(id);
+    }
+
+    @DeleteMapping("removeBookFromBasket/{accountId}")
+    public ResponseEntity<BookBasket> removeBookFromBasket(@PathVariable("accountId") Long accountId
+            , @RequestBody Long bookId){
+
+        return ResponseEntity.ok(bookBasketService.removeBookFromBasket(bookId, accountId));
     }
 }
