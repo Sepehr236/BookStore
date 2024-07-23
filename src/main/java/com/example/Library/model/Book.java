@@ -40,6 +40,9 @@ public class Book {
     @OneToMany
     private List<Comment> comments;
 
+    @OneToMany
+    private List<Category> categories;
+
     @Version
     private Long version;
 }
