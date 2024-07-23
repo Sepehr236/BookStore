@@ -25,9 +25,6 @@ public class User {
     @OneToOne
     private Account account;
 
-    @OneToOne
-    private BookBasket bookBasket;
-
     @Version
     private Long version;
 }

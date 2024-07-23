@@ -20,6 +20,9 @@ public class Account {
     @OneToMany
     private List<Book> books;
 
+    @OneToOne
+    private BookBasket bookBasket;
+
     @Version
     private Long version;
 }

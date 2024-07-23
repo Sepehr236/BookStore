@@ -8,6 +8,6 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class BookBasketRequest {
-    private Long userId;
+    private Long accountId;
     private Long bookId;
 }
