@@ -89,4 +89,8 @@ public class BookService {
         Book book = getBookById(id);
         bookRepository.delete(book);
     }
+
+    public Book searchBook(String name){
+        return bookRepository.findByName(name);
+    }
 }
