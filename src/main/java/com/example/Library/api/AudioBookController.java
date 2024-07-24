@@ -30,6 +30,13 @@ public class AudioBookController {
         return ResponseEntity.ok(audioBookService.getAudioBookById(id));
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<AudioBook> updateAudioBook(@PathVariable("id") Long id
+            , @RequestBody AudioBookRequest audioBookRequest){
+
+        return ResponseEntity.ok(audioBookService.updateAudioBook(id, audioBookRequest));
+    }
+
     @DeleteMapping("/{id}")
     public void deleteAudioBook(@PathVariable("id") Long id){
         audioBookService.deleteAudioBook(id);
