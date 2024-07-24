@@ -2,14 +2,8 @@ package com.example.Library.service;
 
 import com.example.Library.dto.AudioBookRequest;
 import com.example.Library.exeption.ResourceNotFound;
-import com.example.Library.model.AudioBook;
-import com.example.Library.model.Author;
-import com.example.Library.model.Publisher;
-import com.example.Library.model.Translator;
-import com.example.Library.repository.AudioBookRepository;
-import com.example.Library.repository.AuthorRepository;
-import com.example.Library.repository.PublisherRepository;
-import com.example.Library.repository.TranslatorRepository;
+import com.example.Library.model.*;
+import com.example.Library.repository.*;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -22,6 +16,7 @@ public class AudioBookService {
     private final AuthorRepository authorRepository;
     private final PublisherRepository publisherRepository;
     private final TranslatorRepository translatorRepository;
+    private final NarratorRepository narratorRepository;
 
     public AudioBook addAudioBook(AudioBookRequest audioBookRequest){
         Author author = authorRepository.findById(audioBookRequest.getAuthorId())
@@ -30,8 +25,11 @@ public class AudioBookService {
                 .orElseThrow(ResourceNotFound.instance("Publisher not found!!!"));
         Translator translator = translatorRepository.findById(audioBookRequest.getTranslatorId())
                 .orElseThrow(ResourceNotFound.instance("Translator not found!!!"));
+        Narrator narrator = narratorRepository.findById(audioBookRequest.getNarratorId())
+                .orElseThrow(ResourceNotFound.instance("Narrator not found !!!"));
 
         return audioBookRepository.save(AudioBook.builder()
+                .narrator(narrator)
                 .publisher(publisher)
                 .author(author)
                 .translator(translator)

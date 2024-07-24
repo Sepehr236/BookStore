@@ -1,6 +1,7 @@
 package com.example.Library.model;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,6 +15,8 @@ import lombok.experimental.SuperBuilder;
 @SuperBuilder
 @Entity
 public class AudioBook extends Book{
-    private Long narrator;
     private String narratingTime;
+
+    @ManyToOne
+    private Narrator narrator;
 }

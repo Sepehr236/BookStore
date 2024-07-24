@@ -17,7 +17,6 @@ public class AudioBookRequest {
     private Long publisherId;
     private Long authorId;
     private Long translatorId;
-
-    private String narrator;
+    private Long narratorId;
     private String narratingTime;
 }
