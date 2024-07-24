@@ -2,6 +2,7 @@ package com.example.Library.model;
 
 import jakarta.persistence.*;
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 import java.util.List;
 
@@ -9,7 +10,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
+@SuperBuilder
 @Entity
 public class Book {
     @Id
