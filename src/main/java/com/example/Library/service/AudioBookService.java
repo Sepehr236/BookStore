@@ -41,6 +41,7 @@ public class AudioBookService {
                 .price(audioBookRequest.getPrice())
                 .numberOfPages(audioBookRequest.getNumberOfPages())
                 .publishDate(audioBookRequest.getPublishDate())
+                .narratingTime(audioBookRequest.getNarratingTime())
                 .fiveStars(0)
                 .fourStars(0)
                 .threeStars(0)
@@ -57,6 +58,32 @@ public class AudioBookService {
     public AudioBook getAudioBookById(Long audioBookId){
         return audioBookRepository.findById(audioBookId)
                 .orElseThrow(ResourceNotFound.instance("AudioBook not found !!!"));
+    }
+
+    public AudioBook updateAudioBook(Long audioBookId, AudioBookRequest audioBookRequest){
+        AudioBook audioBook = getAudioBookById(audioBookId);
+        Author author = authorRepository.findById(audioBookRequest.getAuthorId())
+                .orElseThrow(ResourceNotFound.instance("Author not found!!!"));
+        Publisher publisher = publisherRepository.findById(audioBookRequest.getPublisherId())
+                .orElseThrow(ResourceNotFound.instance("Publisher not found!!!"));
+        Translator translator = translatorRepository.findById(audioBookRequest.getTranslatorId())
+                .orElseThrow(ResourceNotFound.instance("Translator not found!!!"));
+        Narrator narrator = narratorRepository.findById(audioBookRequest.getNarratorId())
+                .orElseThrow(ResourceNotFound.instance("Narrator not found !!!"));
+
+        audioBook.setName(audioBookRequest.getName());
+        audioBook.setAbout(audioBookRequest.getAbout());
+        audioBook.setLanguage(audioBookRequest.getLanguage());
+        audioBook.setPrice(audioBookRequest.getPrice());
+        audioBook.setNumberOfPages(audioBookRequest.getNumberOfPages());
+        audioBook.setPublishDate(audioBookRequest.getPublishDate());
+        audioBook.setNarratingTime(audioBook.getNarratingTime());
+        audioBook.setAuthor(author);
+        audioBook.setPublisher(publisher);
+        audioBook.setTranslator(translator);
+        audioBook.setNarrator(narrator);
+
+        return audioBook;
     }
 
     public void deleteAudioBook(Long audioBookId){
