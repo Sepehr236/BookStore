@@ -16,7 +16,7 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String category;
 
-    @OneToMany
+    @ManyToMany
     private List<CategoryBranch> branches;
 
     @Version
