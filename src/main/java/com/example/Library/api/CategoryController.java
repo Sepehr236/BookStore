@@ -21,11 +21,6 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.addCategory(category));
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<List<Book>> getBookByCategory(@PathVariable("id") Long id){
-        return ResponseEntity.ok(categoryService.getBookByCategory(id));
-    }
-
     @DeleteMapping("/{id}")
     public void deleteCategory(@PathVariable("id") Long id){
         categoryService.deleteCategory(id);

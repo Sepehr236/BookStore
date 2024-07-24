@@ -22,13 +22,6 @@ public class CategoryService {
                 .build());
     }
 
-    public List<Book> getBookByCategory(Long categoryId){
-        Category category = categoryRepository.findById(categoryId)
-                .orElseThrow(ResourceNotFound.instance("Category not found !!!"));
-
-        return category.getBooks();
-    }
-
     public void deleteCategory(Long categoryId){
         categoryRepository.deleteById(categoryId);
     }

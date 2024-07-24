@@ -16,8 +16,8 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private String category;
 
-    @ManyToMany
-    private List<Book> books;
+    @OneToMany
+    private List<CategoryBranch> branches;
 
     @Version
     private Long version;
