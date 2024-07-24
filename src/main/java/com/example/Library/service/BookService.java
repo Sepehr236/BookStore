@@ -90,8 +90,4 @@ public class BookService {
     public Book searchBook(String name){
         return bookRepository.findByName(name);
     }
-
-    public List<Book> findByCategory(Category category){
-        return bookRepository.findByCategory(category);
-    }
 }
