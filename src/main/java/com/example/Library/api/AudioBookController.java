@@ -7,6 +7,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RequestMapping("api/AudioBook")
 @RestController
 @RequiredArgsConstructor
@@ -16,6 +18,16 @@ public class AudioBookController {
     @PostMapping
     public ResponseEntity<AudioBook> addAudioBook(@RequestBody AudioBookRequest audioBookRequest){
         return ResponseEntity.ok(audioBookService.addAudioBook(audioBookRequest));
+    }
+
+    @GetMapping
+    public ResponseEntity<List<AudioBook>> getAllAudioBooks(){
+        return ResponseEntity.ok(audioBookService.getAllAudioBooks());
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<AudioBook> getAudioBookById(@PathVariable("id") Long id){
+        return ResponseEntity.ok(audioBookService.getAudioBookById(id));
     }
 
     @DeleteMapping("/{id}")
