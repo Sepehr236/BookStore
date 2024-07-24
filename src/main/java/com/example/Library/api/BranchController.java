@@ -28,6 +28,11 @@ public class BranchController {
         return ResponseEntity.ok(categoryBranchService.addBookToBranch(branchId, bookId));
     }
 
+    @GetMapping("/{branchId}")
+    public ResponseEntity<List<Book>> getBookByBranch(@PathVariable("branchId") Long branchId){
+        return ResponseEntity.ok(categoryBranchService.getBooksByBranch(branchId));
+    }
+
     @DeleteMapping("/{branchId}")
     public void deleteBookFromBranch(@PathVariable("branchId") Long branchId, @RequestBody Long bookId){
         categoryBranchService.deleteBookFromBranch(branchId, bookId);

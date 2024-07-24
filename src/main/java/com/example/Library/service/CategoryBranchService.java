@@ -43,7 +43,7 @@ public class CategoryBranchService {
         categoryBranch.getBooks().remove(book);
     }
 
-    public List<Book> getBooksFromBranch(Long branchId){
+    public List<Book> getBooksByBranch(Long branchId){
         CategoryBranch branch = categoryBranchRepository.findById(branchId)
                 .orElseThrow(ResourceNotFound.instance("Branch not found !!!"));
         return branch.getBooks();
