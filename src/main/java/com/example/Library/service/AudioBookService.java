@@ -8,6 +8,8 @@ import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -46,6 +48,15 @@ public class AudioBookService {
                 .oneStars(0)
                 .overAllRate(0.0)
                 .build());
+    }
+
+    public List<AudioBook> getAllAudioBooks(){
+        return audioBookRepository.findAll();
+    }
+
+    public AudioBook getAudioBookById(Long audioBookId){
+        return audioBookRepository.findById(audioBookId)
+                .orElseThrow(ResourceNotFound.instance("AudioBook not found !!!"));
     }
 
     public void deleteAudioBook(Long audioBookId){
