@@ -33,4 +33,13 @@ public class CategoryBranchService {
         categoryBranch.getBooks().add(book);
         return categoryBranch.getBooks();
     }
+
+    public void deleteBookFromBranch(Long branchId, Long bookId){
+        CategoryBranch categoryBranch = categoryBranchRepository.findById(branchId)
+                .orElseThrow(ResourceNotFound.instance("Branch not found !!!"));
+        Book book = bookRepository.findById(bookId)
+                .orElseThrow(ResourceNotFound.instance("Book not found !!!"));
+
+        categoryBranch.getBooks().remove(book);
+    }
 }
