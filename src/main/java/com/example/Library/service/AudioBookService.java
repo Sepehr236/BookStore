@@ -47,4 +47,8 @@ public class AudioBookService {
                 .overAllRate(0.0)
                 .build());
     }
+
+    public void deleteAudioBook(Long audioBookId){
+        audioBookRepository.deleteById(audioBookId);
+    }
 }
